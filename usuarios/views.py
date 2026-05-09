@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserForm, GrupoForm
 from django.contrib.auth.decorators import login_required
-
 from .models import Grupo
-
 
 # Create your views here.
 def sign_up(request):
@@ -63,4 +61,17 @@ def editar_grupo(request, pk):
             'grupo': grupo,
             'form': form
         }
+    )
+@login_required
+def eliminar_grupo(request, pk):
+    grupo = get_object_or_404(Grupo, pk=pk)
+    if grupo.usuario != request.user:
+        return redirect('grupo')
+    if request.method == 'POST':
+        grupo.delete()
+        return redirect('grupo')
+    return render(
+        request,
+        'grupos/eliminar.html',
+        {'grupo': grupo}
     )
