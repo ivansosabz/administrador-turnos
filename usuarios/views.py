@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserForm, GrupoForm
 from django.contrib.auth.decorators import login_required
 
@@ -43,4 +43,24 @@ def crear_grupo(request):
         'grupos/crear.html'
         ,{'form': form}
     )
-
+@login_required
+def editar_grupo(request, pk):
+    grupo = get_object_or_404(Grupo, pk=pk) #seleccionando grupo
+    if grupo.usuario != request.user:
+        return redirect('grupo')
+    if request.method == 'POST':
+        form = GrupoForm(request.POST, instance=grupo) #instace=grupo para que muestre los datos cuales
+        if form.is_valid():
+            form.save()
+            return redirect('grupo')
+    else:
+        #si es get solo muestra el formulario con los datos
+        form = GrupoForm(instance=grupo)
+    return render(
+        request,
+        'grupos/editar.html',
+        {
+            'grupo': grupo,
+            'form': form
+        }
+    )

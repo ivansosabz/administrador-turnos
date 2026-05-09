@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'layouts/base.html' %}
+{% block title %}Editar de grupos{% endblock %}
+{% block content %}
+    <h1>Editar grupo {{ grupo.nombre }}</h1>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <div class="btn btn-secondary">
+                <a href="{% url 'grupo' %}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

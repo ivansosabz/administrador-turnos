@@ -10,7 +10,7 @@ urlpatterns = [
     #grupos
     path('grupos/', views.grupo, name='grupo'),
     path('grupos/crear/', views.crear_grupo, name='crear_grupo'),
-    # path('grupos/editar/<int:pk>/', views.editar_grupo, name='editar_grupo'),
+    path('grupos/editar/<int:pk>/', views.editar_grupo, name='editar_grupo'),
     # path('grupos/eliminar/<int:pk>/', views.eliminar_grupo, name='eliminar_grupo'),
 ]
 # se le agrega _view porque django ya tiene funciones login y logut
