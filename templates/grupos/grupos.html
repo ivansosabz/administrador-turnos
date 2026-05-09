@@ -1,1 +1,8 @@
 {% extends 'layouts/base.html' %}
+{% block title %}Lista de grupos{% endblock %}
+{% block content %}
+    <h1>Lista de grupos</h1>
+    {% for grupo in grupos %}
+        {{ grupo.nombre }}
+    {% endfor %}
+{% endblock %}

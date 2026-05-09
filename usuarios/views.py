@@ -19,9 +19,9 @@ def sign_up(request):
         'usuarios/signup.html',
         {'form': form}
     )
-
+@login_required
 def grupo(request):
-    grupos = Grupo.objects.all()
+    grupos = Grupo.objects.filter(usuario = request.user)
     return render(
         request,
         'grupos/grupos.html',
@@ -32,8 +32,8 @@ def crear_grupo(request):
     if request.method == 'POST':
         form = GrupoForm(request.POST)
         if form.is_valid():
-            grupo = form.save(commit=False) # sirve para que cree en objeto pero que aun no lo guarde en la bd, porque si guardas usuario dara error
-            grupo.usuario = request.user # el usuario logueado en ese momento
+            grupo = form.save(commit=False) #sirve para que cree en objeto pero que aun no lo guarde en la bd, porque si guardas usuario dara error
+            grupo.usuario = request.user #el usuario logueado en ese momento
             grupo.save()
             return redirect('grupo')
     else:
