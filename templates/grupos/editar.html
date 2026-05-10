@@ -1,15 +1,33 @@
 {% extends 'layouts/base.html' %}
-{% block title %}Editar de grupos{% endblock %}
+{% block title %}Editar de grupo{% endblock %}
 {% block content %}
-    <h1>Editar grupo {{ grupo.nombre }}</h1>
-    <div>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-            <div class="btn btn-secondary">
-                <a href="{% url 'grupo' %}">Cancelar</a>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h3 class="mb-0">Editar grupo: {{ grupo.nombre }}</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        	<div class="mb-3">
+                                <label class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                	<div class="text-danger small">{{ field.errors }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="{% url 'grupo' %}" class="btn btn-secondary form-control">Cancelar</a>
+                            <button type="submit" class="btn btn-primary form-control">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
+</div>
 {% endblock %}
