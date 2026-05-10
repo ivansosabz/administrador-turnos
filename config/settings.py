@@ -127,6 +127,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/grupos'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
