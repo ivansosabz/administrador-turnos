@@ -16,7 +16,7 @@ class ResponsableForm(forms.ModelForm):
             'nombre',
             'apellido',
             'color',
-            'activo'
+            'activo',
             'grupoFamiliar',
         ]
         widgets = {
