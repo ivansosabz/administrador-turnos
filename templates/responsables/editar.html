@@ -1,4 +1,33 @@
 {% extends 'layouts/base.html' %}
-{% block title %}Editar de grupo{% endblock %}
+{% block title %}Editar de responsable{% endblock %}
 {% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h3 class="mb-0">Editar responsable: {{ responsable.nombre }}</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        	<div class="mb-3">
+                                <label class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                	<div class="text-danger small">{{ field.errors }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="{% url 'responsables' %}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
