@@ -9,7 +9,7 @@ urlpatterns = [
     path('signup/', views.sign_up, name='signup'),
     #grupos
     path('grupos/', views.grupo, name='grupo'),
-    path('grupos/crear/', views.crear_grupo, name='crear_grupo'),
-    path('grupos/editar/<int:pk>/', views.editar_grupo, name='editar_grupo'),
-    path('grupos/eliminar/<int:pk>/', views.eliminar_grupo, name='eliminar_grupo'),
+    path('grupos/crear/', views.grupo_crear, name='grupo_crear'),
+    path('grupos/editar/<int:pk>/', views.grupo_editar, name='grupo_editar'),
+    path('grupos/eliminar/<int:pk>/', views.grupo_eliminar, name='grupo_eliminar'),
 ]
