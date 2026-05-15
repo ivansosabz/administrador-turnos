@@ -40,10 +40,10 @@
                                 </span>
                             </td>
                             <td>
-                                {% if responsable.activo == True %}
-                                    Activo
+                                {% if responsable.activo %}
+                                    <span class="badge bg-success">Activo</span>
                                 {% else %}
-                                    Inactivo
+                                    <span class="badge bg-secondary">Inactivo</span>
                                 {% endif %} 
                             </td>
                             <td>
