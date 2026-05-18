@@ -1,5 +1,8 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
 {% block title %}Lista de responsables{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/responsables/responsables.css' %}">{% endblock %}
 {% block content %}
 <div class="container mt-4">
     {# encabezado #}
@@ -23,39 +26,34 @@
                 </thead>
                 <tbody>
                     {% for responsable in responsables %}
-                        <tr>
-                            <td>{{ responsable.id }}</td>
-                            <td>{{ responsable.nombre }} {{ responsable.apellido }}</td>
-                            <td>{{ responsable.grupoFamiliar.nombre }}</td>
-                            <td>
-                                <span
-                                        style="
-                                            background-color: {{ responsable.color }};
-                                            width: 30px;
-                                            height: 25px;
-                                            border-radius: 20%;
-                                            display: inline-block;
-                                        "
-                                >
-                                </span>
-                            </td>
-                            <td>
-                                {% if responsable.activo %}
-                                    <span class="badge bg-success">Activo</span>
-                                {% else %}
-                                    <span class="badge bg-secondary">Inactivo</span>
-                                {% endif %} 
-                            </td>
-                            <td>
-                                <a href="{% url 'responsables_editar' responsable.pk %}" class="btn btn-warning">Editar</a>
-                                <a href="{% url 'responsables_eliminar' responsable.pk %}" class="btn btn-danger">Eliminar</a>
-                            </td>
+                    <tr>
+                        <td>{{ responsable.id }}</td>
+                        <td>{{ responsable.nombre }} {{ responsable.apellido }}</td>
+                        <td>{{ responsable.grupoFamiliar.nombre }}</td>
+                        <td>
+                            <span 
+                                class="color-badge" 
+                                style="background-color: {{ responsable.color }};">
+                            </span>
+                        </td>
+                        <td>
+                            {% if responsable.activo %}
+                            <span class="badge bg-success">Activo</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Inactivo</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'responsables_editar' responsable.pk %}" class="btn btn-warning">Editar</a>
+                            <a href="{% url 'responsables_eliminar' responsable.pk %}"
+                                class="btn btn-danger">Eliminar</a>
+                        </td>
 
-                        </tr>
+                    </tr>
                     {% empty %} {# empty ? #}
-                        <tr>
-                            <td colspan="6" class="text-center text-muted">No hay responsables</td>
-                        </tr>
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No hay responsables</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
