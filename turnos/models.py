@@ -4,7 +4,7 @@ from usuarios.models import Grupo
 # Create your models here.
 
 class Responsable (models.Model):
-    grupoFamiliar = models.ForeignKey(Grupo, on_delete=models.CASCADE)
+    grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     color = models.CharField(max_length=7, default='#000000')
@@ -13,7 +13,7 @@ class Responsable (models.Model):
         return self.nombre
 
 class Ciclo(models.Model):
-    grupoFamiliar = models.ForeignKey(Grupo, on_delete=models.CASCADE)
+    grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE)
     intervalo_dias = models.IntegerField()
     fecha_inicio = models.DateField()
     activo = models.BooleanField(default=True)

@@ -8,7 +8,7 @@ class ResponsableForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['grupoFamiliar'].queryset = Grupo.objects.filter(usuario=user)
+            self.fields['grupo'].queryset = Grupo.objects.filter(usuario=user)
 
     class Meta:
         model = Responsable
@@ -17,7 +17,7 @@ class ResponsableForm(forms.ModelForm):
             'apellido',
             'color',
             'activo',
-            'grupoFamiliar',
+            'grupo',
         ]
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
@@ -26,7 +26,7 @@ class ResponsableForm(forms.ModelForm):
                 'type': 'color',
                 'class': 'form-control'
             }),
-            'grupoFamiliar': forms.Select(attrs={'class': 'form-select'}),
+            'grupo': forms.Select(attrs={'class': 'form-select'}),
         }
 
 class CicloForm(forms.ModelForm):
@@ -34,20 +34,20 @@ class CicloForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['grupoFamiliar'].queryset = Grupo.objects.filter(usuario=user)
+            self.fields['grupo'].queryset = Grupo.objects.filter(usuario=user)
     class Meta:
         model = Ciclo
         fields = [
             'intervalo_dias',
             'fecha_inicio',
             'activo',
-            'grupoFamiliar',
+            'grupo',
         ]
         widgets = {
         'intervalo_dias': forms.NumberInput(attrs={'class': 'form-control'}),
         'fecha_inicio': forms.DateInput(attrs={'class': 'form-control'}),
         'activo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        'grupoFamiliar': forms.Select(attrs={'class': 'form-select'}),
+        'grupo': forms.Select(attrs={'class': 'form-select'}),
         }
 
 class CicloOrdenForm(forms.ModelForm):
@@ -55,7 +55,7 @@ class CicloOrdenForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['responsable'].queryset = Responsable.objects.filter(grupoFamiliar__usuario=user)
+            self.fields['responsable'].queryset = Responsable.objects.filter(grupo__usuario=user)
 
     class Meta:
         model = CicloOrden

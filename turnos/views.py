@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from turnos.forms import ResponsableForm
-from turnos.models import Responsable
+from turnos.forms import ResponsableForm, CicloForm
+from turnos.models import Responsable, Ciclo
+
 
 # Create your views here.
 @login_required
 def responsables(request):
-    responsables = Responsable.objects.filter(grupoFamiliar__usuario=request.user)
+    responsables = Responsable.objects.filter(grupo__usuario=request.user)
     return render(
         request,
         'responsables/responsables.html',
@@ -33,7 +34,7 @@ def responsables_crear(request):
 @login_required
 def responsables_editar(request, pk):
     responsable = get_object_or_404(Responsable, pk=pk)
-    if responsable.grupoFamiliar.usuario != request.user:
+    if responsable.grupo.usuario != request.user:
         return redirect('responsables')
     if request.method == 'POST':
         # form = ResponsableForm(request.POST, instance=responsable)
@@ -57,7 +58,7 @@ def responsables_editar(request, pk):
 @login_required
 def responsables_eliminar(request, pk):
     responsable = get_object_or_404(Responsable, pk=pk)
-    if responsable.grupoFamiliar.usuario != request.user:
+    if responsable.grupo.usuario != request.user:
         return redirect('responsables')
     if request.method == 'POST':
         responsable.delete()
@@ -67,3 +68,32 @@ def responsables_eliminar(request, pk):
         'responsables/eliminar.html',
         {'responsable': responsable}
     )
+
+##---Ciclos---##
+@login_required
+def ciclos(request):
+    ciclos = Ciclo.objects.filter(grupo__usuario=request.user) #Dame los ciclos cuyo grupo tenga como usuario al usuario logueado
+    return render(
+        request,
+        'ciclos/ciclos.html',
+        {'ciclos': ciclos}
+    )
+@login_required
+def ciclos_crear(request):
+    if request.method == 'POST':
+        form = CicloForm(request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('ciclos_orden', ciclo_pk=ciclo.pk)
+    else:
+        form = CicloForm(user=request.user)
+    return render(
+        request,
+        'ciclos/crear.html',
+        {'form': form}
+    )
+
+##---Ciclos Orden---##
+@login_required
+def ciclos_orden(request):
+    return None
