@@ -18,7 +18,7 @@ urlpatterns = [
     # ciclos
     path('ciclos/', views.ciclos, name='ciclos'),
     path('ciclos/crear/', views.ciclos_crear, name='ciclos_crear'),
-    # path('ciclos/editar/<int:pk>/', views.ciclos_editar, name='ciclos_editar'),
+    path('ciclos/editar/<int:pk>/', views.ciclos_editar, name='ciclos_editar'),
     # path('ciclos/eliminar/<int:pk>/', views.ciclos_eliminar, name='ciclos_eliminar'),
     # # ciclo orden
     path('ciclos/<int:ciclo_pk>/orden/', views.ciclos_orden, name='ciclos_orden'),
