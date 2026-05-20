@@ -83,7 +83,7 @@ def ciclos_crear(request):
     if request.method == 'POST':
         form = CicloForm(request.POST, user=request.user)
         if form.is_valid():
-            form.save()
+            ciclo = form.save()
             return redirect('ciclos_orden', ciclo_pk=ciclo.pk)
     else:
         form = CicloForm(user=request.user)
@@ -93,8 +93,8 @@ def ciclos_crear(request):
         {'form': form}
     )
 @login_required
-def ciclos_editar(request, ciclo_pk):
-    ciclo = get_object_or_404(Ciclo, pk=ciclo_pk)
+def ciclos_editar(request, pk):
+    ciclo = get_object_or_404(Ciclo, pk=pk)
     if ciclo.grupo.usuario != request.user:
         return redirect('ciclos')
     if request.method == 'POST':
@@ -114,5 +114,10 @@ def ciclos_editar(request, ciclo_pk):
     )
 ##---Ciclos Orden---##
 @login_required
-def ciclos_orden(request):
-    return None
+def ciclos_orden(request, ciclo_pk):
+    ciclo = get_object_or_404(Ciclo, pk=ciclo_pk)
+    return render(
+        request,
+        'ciclos_orden/ciclos_orden.html',
+        {'ciclo': ciclo}
+    )
