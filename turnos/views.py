@@ -147,7 +147,7 @@ def ciclos_orden(request, ciclo_pk):
     )
 
 @login_required
-def ciclos_agregar(request, ciclo_pk):
+def ciclos_orden_crear(request, ciclo_pk):
     ciclo = get_object_or_404(Ciclo, pk=ciclo_pk)
     if ciclo.grupo.usuario != request.user:
         return redirect('ciclos')

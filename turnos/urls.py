@@ -22,7 +22,7 @@ urlpatterns = [
     path('ciclos/eliminar/<int:pk>/', views.ciclos_eliminar, name='ciclos_eliminar'),
     # # ciclo orden
     path('ciclos/<int:ciclo_pk>/orden/', views.ciclos_orden, name='ciclos_orden'),
-    path('ciclos/<int:ciclo_pk>/orden/crear/', views.ciclos_agregar, name='ciclos_agregar'),
+    path('ciclos/<int:ciclo_pk>/orden/crear/', views.ciclos_orden_crear, name='ciclos_orden_crear'),
     # path('ciclos/<int:ciclo_pk>/orden/editar/<int:pk>/', views.ciclo_orden_editar, name='ciclo_orden_editar'),
     path('ciclos/<int:ciclo_pk>/orden/eliminar/<int:pk>/', views.ciclo_orden_eliminar, name='ciclo_orden_eliminar'),
 ]
