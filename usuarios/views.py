@@ -26,7 +26,7 @@ def grupo(request):
         {'grupos': grupos}
     )
 @login_required
-def crear_grupo(request):
+def grupo_crear(request):
     if request.method == 'POST':
         form = GrupoForm(request.POST)
         if form.is_valid():
@@ -42,7 +42,7 @@ def crear_grupo(request):
         ,{'form': form}
     )
 @login_required
-def editar_grupo(request, pk):
+def grupo_editar(request, pk):
     grupo = get_object_or_404(Grupo, pk=pk) #seleccionando grupo
     if grupo.usuario != request.user:
         return redirect('grupo')
@@ -63,7 +63,7 @@ def editar_grupo(request, pk):
         }
     )
 @login_required
-def eliminar_grupo(request, pk):
+def grupo_eliminar(request, pk):
     grupo = get_object_or_404(Grupo, pk=pk)
     if grupo.usuario != request.user:
         return redirect('grupo')

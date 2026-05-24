@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('fecha_inicio', models.DateField()),
                 ('activo', models.BooleanField(default=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('grupoFamiliar', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.grupo')),
+                ('grupo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.grupo')),
             ],
         ),
         migrations.CreateModel(
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('apellido', models.CharField(max_length=50)),
                 ('color', models.CharField(default='#000000', max_length=7)),
                 ('activo', models.BooleanField(default=True)),
-                ('grupoFamiliar', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.grupo')),
+                ('grupo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='usuarios.grupo')),
             ],
         ),
         migrations.CreateModel(
