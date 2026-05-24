@@ -45,7 +45,13 @@ class CicloForm(forms.ModelForm):
         ]
         widgets = {
         'intervalo_dias': forms.NumberInput(attrs={'class': 'form-control'}),
-        'fecha_inicio': forms.DateInput(attrs={'class': 'form-control'}),
+        'fecha_inicio': forms.DateInput(
+            attrs={
+                'class': 'form-control',
+                'type': 'date'
+            },
+            format='%Y-%m-%d' # para que al editar el form traiga la fecha previamente cargada
+        ),
         'activo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         'grupo': forms.Select(attrs={'class': 'form-select'}),
         }
