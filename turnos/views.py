@@ -3,8 +3,7 @@ from urllib import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from turnos.forms import ResponsableForm, CicloForm, CicloOrdenForm
-from turnos.models import Responsable, Ciclo
-
+from turnos.models import Responsable, Ciclo, CicloOrden
 
 # Create your views here.
 @login_required
