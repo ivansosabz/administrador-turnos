@@ -131,6 +131,6 @@ git revert abc1234   # el hash del commit que se quiere anular
 |--------|--------|
 | Autenticacion (registro, login, logout) | Completado |
 | Grupos familiares | Completado |
-| Responsables | En desarrollo |
+| Responsables | Completado |
 | Ciclos de rotacion | Pendiente |
 | Turnos reales | Pendiente |
