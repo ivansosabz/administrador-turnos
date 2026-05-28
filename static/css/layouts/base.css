@@ -1,3 +1,9 @@
+:root {
+  --brand: #48e;
+  --brand-soft: rgba(255, 255, 255, 0.12);
+  --brand-soft-strong: rgba(255, 255, 255, 0.18);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -11,9 +17,16 @@ body {
 
 /* ── Navbar ── */
 .navbar-custom {
-  background: #48e !important;
+  background: var(--brand) !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.2s;
+}
+
+.navbar-custom .navbar-brand:focus-visible,
+.navbar-custom .navbar-toggler:focus-visible,
+.navbar-custom .nav-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .navbar-custom .navbar-brand {
@@ -39,12 +52,17 @@ body {
 .navbar-custom .nav-link:hover,
 .navbar-custom .nav-link:focus {
   color: #fff !important;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--brand-soft);
 }
 
 .navbar-custom .nav-link.active {
   color: #fff !important;
-  background: rgba(255, 255, 255, 0.18);
+  background: var(--brand-soft-strong);
+}
+
+.navbar-custom button.nav-link {
+  background: transparent;
+  border: 0;
 }
 
 .navbar-custom .navbar-toggler {

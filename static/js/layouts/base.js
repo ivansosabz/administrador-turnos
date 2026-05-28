@@ -6,13 +6,4 @@
       bsAlert.close();
     }, 4000);
   });
-
-  // Marcar nav-link activo según la URL actual
-  var currentPath = window.location.pathname;
-  document.querySelectorAll('.navbar-nav .nav-link').forEach(function (link) {
-    var href = link.getAttribute('href');
-    if (href && href !== '#' && currentPath.startsWith(href)) {
-      link.classList.add('active');
-    }
-  });
 })();
